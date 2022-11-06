@@ -1,6 +1,6 @@
 # Budgeting App - AWS Serverless
 
-The application that I built allows users to sign-in or sign-up and create monthly budgets.
+The application allows users to sign-in or sign-up and create monthly budgets.
 
 ### Live demo
 ADD URL

@@ -1,4 +1,3 @@
-
 interface MonthRecord {
   id: string; // year-month eg 2022-11
   ownerId: string; // owner
@@ -6,11 +5,14 @@ interface MonthRecord {
 }
 
 interface EntryRecord {
-  id: string,
+  id: string;
   pk: string;
   sk: string;
 
-  type: string, // expense or income
-  category: string, // food, rent, car, etc
-  amount: number, // 20.00 - use regex to enforce period or comma for decimals
+  type: string; // expense, income, transfer
+  category: string; // food, rent, car, etc
+  amount: number; // 20.00 - use regex to enforce period or comma for decimals
+  month: string; // eg 2022-11
+  TTL: string; // due date
+  note: string;
 }
