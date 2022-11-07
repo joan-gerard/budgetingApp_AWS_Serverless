@@ -1,3 +1,13 @@
+interface UserConnectionRecord {
+  id: string; // event.requestContext > connectionId
+  pk: string; // connection#${userId}
+  sk: string; // event.requestContext > connectionId
+
+  userName: string;
+  userId: string;
+  domainName: string;
+  stage: string;
+}
 interface MonthRecord {
   id: string; // year-month eg 2022-11
   ownerId: string; // owner

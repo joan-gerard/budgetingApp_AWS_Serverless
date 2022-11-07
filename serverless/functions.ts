@@ -13,20 +13,40 @@ import { AWS } from '@serverless/typescript';
 //   allowCredentials: false,
 // };
 
-interface Authorizer {
-  name: string;
-  type: string;
-  arn: {
-    'Fn::GetAtt': string[];
-  };
-}
-const authorizer: Authorizer = {
-  name: 'authorizer',
-  type: 'COGNITO_USER_POOLS',
-  arn: { 'Fn::GetAtt': ['CognitoUserPool', 'Arn'] },
-};
+// interface Authorizer {
+//   name: string;
+//   type: string;
+//   arn: {
+//     'Fn::GetAtt': string[];
+//   };
+// }
+// const authorizer: Authorizer = {
+//   name: 'authorizer',
+//   type: 'COGNITO_USER_POOLS',
+//   arn: { 'Fn::GetAtt': ['CognitoUserPool', 'Arn'] },
+// };
 
 const functions: AWS['functions'] = {
+  websocketConnect: {
+    handler: 'src/functions/websocketConnect/index.handler',
+    events: [
+      {
+        websocket: {
+          route: '$connect',
+        },
+      },
+    ],
+  },
+  websocketDisconnect: {
+    handler: 'src/functions/websocketDisconnect/index.handler',
+    events: [
+      {
+        websocket: {
+          route: '$disconnect',
+        },
+      },
+    ],
+  },
 };
 
 export default functions;
