@@ -2,7 +2,7 @@ import { formatJSONResponse } from '@libs/APIResponses';
 import Dynamo from '@libs/Dynamo';
 import { websocket } from '@libs/Websocket';
 import { APIGatewayProxyEvent } from 'aws-lambda';
-// import { v4 as uuid } from 'uuid';
+import { v4 as uuid } from 'uuid';
 
 export const handler = async (event: APIGatewayProxyEvent) => {
   try {
@@ -29,7 +29,7 @@ export const handler = async (event: APIGatewayProxyEvent) => {
 
     // get user who makes the request
     // removed userName
-    const { userId } = await Dynamo.get<UserConnectionRecord>({
+    const { userId, userName } = await Dynamo.get<UserConnectionRecord>({
       pkValue: connectionId,
       tableName,
     });
@@ -44,21 +44,20 @@ export const handler = async (event: APIGatewayProxyEvent) => {
     await Dynamo.write({ data: monthData, tableName });
 
     // create group user connection record
-    // createUserGroupConnection: {
-    //   const data: UserGroupRecord = {
-    //     id: uuid(),
-    //     pk: groupId,
-    //     sk: `user#${userId}`,
-    //     pk2: userId,
-    //     sk2: `group#${groupId}`,
+    createUserGroupConnection: {
+      const data: UserMonthRecord = {
+        id: uuid(),
+        pk: budgetMonth,
+        sk: `user#${userId}`,
+        pk2: userId,
+        sk2: `month#${budgetMonth}`,
 
-    //     userId,
-    //     groupId,
-    //     userName,
-    //     groupName,
-    //   };
-    //   await Dynamo.write({ data, tableName });
-    // }
+        userId,
+        budgetMonth,
+        userName,
+      };
+      await Dynamo.write({ data, tableName });
+    }
 
     // send message that group was created
 
