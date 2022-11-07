@@ -11,7 +11,7 @@ interface UserConnectionRecord {
 interface MonthRecord {
   id: string; // year-month eg 2022-11
   ownerId: string; // owner
-  groupName: string; // 'November 2022'
+  budgetMonth: string; // 'November 2022'
 }
 
 interface EntryRecord {

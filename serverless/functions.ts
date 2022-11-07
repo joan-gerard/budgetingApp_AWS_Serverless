@@ -47,6 +47,16 @@ const functions: AWS['functions'] = {
       },
     ],
   },
+  websocketCreateMonth: {
+    handler: 'src/functions/websocketCreateMonth/index.handler',
+    events: [
+      {
+        websocket: {
+          route: 'createMonth',
+        },
+      },
+    ],
+  },
 };
 
 export default functions;
