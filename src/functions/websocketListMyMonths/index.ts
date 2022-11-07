@@ -41,7 +41,7 @@ export const handler = async (event: APIGatewayProxyEvent) => {
       stage,
       message: JSON.stringify({
         data: responseData,
-        type: 'groupData'
+        type: 'monthData'
       }),
     });
 
