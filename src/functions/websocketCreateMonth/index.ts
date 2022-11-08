@@ -19,7 +19,7 @@ export const handler = async (event: APIGatewayProxyEvent) => {
         stage,
         message: JSON.stringify({
           message: 'you need to choose a month with request',
-          type: 'error',
+          type: 'err',
         }),
       });
       return formatJSONResponse({

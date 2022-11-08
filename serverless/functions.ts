@@ -13,18 +13,18 @@ import { AWS } from '@serverless/typescript';
 //   allowCredentials: false,
 // };
 
-// interface Authorizer {
-//   name: string;
-//   type: string;
-//   arn: {
-//     'Fn::GetAtt': string[];
-//   };
-// }
-// const authorizer: Authorizer = {
-//   name: 'authorizer',
-//   type: 'COGNITO_USER_POOLS',
-//   arn: { 'Fn::GetAtt': ['CognitoUserPool', 'Arn'] },
-// };
+interface Authorizer {
+  name: string;
+  type: string;
+  arn: {
+    'Fn::GetAtt': string[];
+  };
+}
+const authorizer: Authorizer = {
+  name: 'authorizer',
+  type: 'COGNITO_USER_POOLS',
+  arn: { 'Fn::GetAtt': ['CognitoUserPool', 'Arn'] },
+};
 
 const functions: AWS['functions'] = {
   websocketConnect: {
@@ -73,6 +73,19 @@ const functions: AWS['functions'] = {
       {
         websocket: {
           route: 'transaction',
+        },
+      },
+    ],
+  },
+  getTransactions2: {
+    handler: 'src/functions/getTransactions2/index.handler',
+    events: [
+      {
+        http: {
+          method: 'get',
+          path: 'month/{budgetMonth}',
+          authorizer,
+          cors: true,
         },
       },
     ],
