@@ -14,7 +14,7 @@ interface MonthRecord {
   budgetMonth: string; // '2022-11'
 }
 
-interface EntryRecord {
+interface TransactionRecord {
   id: string;
   pk: string;
   sk: string;
@@ -23,8 +23,8 @@ interface EntryRecord {
   category: string; // food, rent, car, etc
   amount: number; // 20.00 - use regex to enforce period or comma for decimals
   month: string; // eg 2022-11
-  TTL: string; // due date
-  note: string;
+  // TTL: string; // due date
+  date: number
 }
 
 interface UserMonthRecord {

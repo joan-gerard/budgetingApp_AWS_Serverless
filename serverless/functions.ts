@@ -67,6 +67,16 @@ const functions: AWS['functions'] = {
       },
     ],
   },
+  websocketTransaction: {
+    handler: 'src/functions/websocketTransaction/index.handler',
+    events: [
+      {
+        websocket: {
+          route: 'transaction',
+        },
+      },
+    ],
+  },
 };
 
 export default functions;
